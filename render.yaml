@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: geoshop-backend
+    env: python
+    buildCommand: "pip install -r backend/requirements.txt && python backend/manage.py migrate"
+    startCommand: "gunicorn --chdir backend backend.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: DEBUG
+        value: false
